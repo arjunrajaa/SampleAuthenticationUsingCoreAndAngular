@@ -104,7 +104,7 @@ namespace UserAuth
 
                 if (env.IsDevelopment())
                 {
-                    spa.Options.StartupTimeout = new TimeSpan(0, 0, 100);
+                    spa.Options.StartupTimeout = new TimeSpan(0, 0, 110);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });

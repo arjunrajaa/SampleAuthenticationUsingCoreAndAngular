@@ -3,7 +3,6 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
-import { UserRole } from '../models/roles';
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +22,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.userData.role == UserRole.User) {
-      return true;
-    }
-
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-    return false;
+    return true;
   }
 
 }

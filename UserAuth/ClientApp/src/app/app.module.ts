@@ -49,6 +49,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkTableModule } from '@angular/cdk/table';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +57,11 @@ import { CdkTableModule } from '@angular/cdk/table';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    UserListComponent
+    UserListComponent,
+    RegisterUserComponent
   ],
   imports: [
+    MatSelectModule,
     MatPaginatorModule,
     MatSortModule,
     BrowserModule,
@@ -72,9 +75,10 @@ import { CdkTableModule } from '@angular/cdk/table';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: UserListComponent, pathMatch: 'full',canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
+      { path: 'register-user', component: RegisterUserComponent, canActivate: [AdminGuard] },
     ])
   ],
   exports: [

@@ -23,6 +23,13 @@ export class AuthService {
       }));
   }
 
+  register(userRegisterdata) {
+    return this.http.post<any>('/api/user/CreateUser', userRegisterdata)
+      .pipe(map(response => {
+        return response;
+      }));
+  }
+
   setUserDetails() {
     if (localStorage.getItem('authToken')) {
       const userDetails = new User();

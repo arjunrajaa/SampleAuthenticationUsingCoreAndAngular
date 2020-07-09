@@ -1,11 +1,11 @@
 
-<h3>All registered users:</h3>
+<h3>All registered users</h3>
 
 <div>
   <div class="mat-app-background basic-container">
     <div class="example-container mat-elevation-z8">
 
-      <mat-table [dataSource]="users" matSort>
+      <mat-table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="userName">
           <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
@@ -18,13 +18,18 @@
         </ng-container>
 
         <ng-container matColumnDef="lastName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
           <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="dateOfBirth">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> DOB </mat-header-cell>
-          <mat-cell *matCellDef="let row" [style.color]="row.dateOfBirth"> {{row.dateOfBirth}} </mat-cell>
+        <ng-container matColumnDef="age">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Age </mat-header-cell>
+          <mat-cell *matCellDef="let row" [style.color]="row.age"> {{row.age}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+          <mat-cell *matCellDef="let row" [style.color]="row.address"> {{row.address}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -32,7 +37,7 @@
         </mat-row>
       </mat-table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[100]"></mat-paginator>
     </div>
   </div>
 </div>

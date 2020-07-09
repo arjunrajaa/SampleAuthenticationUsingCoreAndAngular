@@ -9,7 +9,7 @@ import { User } from '../models/user';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
 
   userData: string;
   users: User[] = [];
@@ -20,14 +20,11 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit() {
+  constructor(private userService: UserService) {
     this.loadAllUsers();
     this.dataSource = new MatTableDataSource(this.users);
-
   }
-
+  
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

@@ -12,14 +12,14 @@
             <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/login"]'>Login</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.User">UserHome</a>
+            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole[userRole.User]" [routerLink]='["/user-list"]' >UserHome</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.Admin">AdminHome</a>
+            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole[userRole.Admin]" [routerLink]='["/user-list"]' >AdminHome</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.Admin"
-               [routerLink]='["/register-user"]' [routerLink]=''>Create New User</a>
+            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole[userRole.Admin]"
+               [routerLink]='["/register-user"]'>Create New User</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>

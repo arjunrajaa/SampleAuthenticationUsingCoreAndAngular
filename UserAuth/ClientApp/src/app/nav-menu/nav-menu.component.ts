@@ -9,7 +9,6 @@ import { UserRole } from '../models/roles';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
   userDataSubscription: any;
   userData = new User();
   userRole = UserRole;
@@ -18,14 +17,6 @@ export class NavMenuComponent {
     this.userDataSubscription = this.authService.userData.asObservable().subscribe(data => {
       this.userData = data;
     });
-  }
-
-  collapse() {
-    this.isExpanded = false;
-  }
-
-  toggle() {
-    this.isExpanded = !this.isExpanded;
   }
 
   logout() {

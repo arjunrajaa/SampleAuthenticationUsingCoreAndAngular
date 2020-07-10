@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HttpInterceptorService } from './services/http-interceptor.service';
@@ -55,7 +53,6 @@ import { RegisterUserComponent } from './register-user/register-user.component';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
     LoginComponent,
     UserListComponent,
     RegisterUserComponent

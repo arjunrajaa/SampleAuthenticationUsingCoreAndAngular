@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
   }
 
   private loadData() {
-    if (this.userData.role == UserRole.Admin) {
+    if (this.userData.role == UserRole[UserRole.Admin]) {
       this.loadAllUsers();
     }
     else {

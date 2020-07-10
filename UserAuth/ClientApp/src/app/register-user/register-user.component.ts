@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { UserRole } from '../models/roles';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class RegisterUserComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
-  minDate ='1921-01-01';
+  minDate = '1921-01-01';
+  userRole: any;
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -23,7 +25,8 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      role: ['', Validators.required],
+      role: [],
+      isAdmin: [''],
       firstName: ['', [Validators.required, Validators.maxLength(100)]],
       lastName: ['', Validators.maxLength(100)],
       userName: ['', [Validators.required, Validators.email]],
@@ -44,9 +47,9 @@ export class RegisterUserComponent implements OnInit {
       return;
     }
 
-    // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-    const returnUrl =  '/';
+    this.registerForm.value['role'] = this.registerForm.value['isAdmin'] ? UserRole.Admin : UserRole.User;
+
+    const returnUrl =  '/user-list';
     this.authService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
@@ -55,13 +58,17 @@ export class RegisterUserComponent implements OnInit {
         },
         () => {
           this.registerForm.reset();
-          //this.registerForm.setErrors({
-          //});
+          this.registerForm.setErrors({
+          });
         });
   }
 
   onReset() {
     this.submitted = false;
     this.registerForm.reset();
+  }
+
+  get roleEnum() {
+    return UserRole;
   }
 }

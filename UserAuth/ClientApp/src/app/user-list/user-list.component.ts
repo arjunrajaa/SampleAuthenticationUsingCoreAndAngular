@@ -29,7 +29,6 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.getUer();
     this.loadData();
   }
@@ -38,29 +37,19 @@ export class UserListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+  
   private loadData() {
+    let users: any;
     if (this.userData.role == UserRole[UserRole.Admin]) {
-      this.loadAllUsers();
+      users = this.userService.getAdminViewData();
     }
     else {
-      this.loadAllUserData();
+      users = this.userService.getUserViewData();
     }
-  }
-
- private loadAllUserData() {
-    this.userService.getUserViewData().subscribe(result => {
+    users.subscribe(result => {
       this.users = result;
       this.setData();
-      }
-    );
- }
-
-  private loadAllUsers() {
-    this.userService.getAdminViewData().subscribe(result => {
-      this.users = result;
-      this.setData()
-      }
+    }
     );
   }
 
